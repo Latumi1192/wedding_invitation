@@ -1,12 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Button, MenuItem, Menu } from "@mui/material";
 import PageBar from "./PageBar";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 
 export default function AboutUs() {
   const [bride, setBride] = React.useState(true);
   const [groom, setGroom] = React.useState(true);
+
   return (
     <Box>
       <div>
@@ -21,20 +22,16 @@ export default function AboutUs() {
             flexWrap: "wrap",
             alignItems: "flex-start",
             alignContent: "flex-start",
-            mt: 1,
-            border: 3,
             "& .MuiBox-root": { m: 1 },
           }}
         >
           {bride && (
             <Box
               sx={{
-                backgroundImage: `url(https://i.ibb.co/JpGkZBg/DSC00868.jpg)`,
+                backgroundImage: `url(https://i.imgur.com/Kex0iPW.jpg)`,
                 backgroundSize: "cover",
                 height: "800px",
                 width: "48%",
-                borderColor: "primary.main",
-                border: 2,
                 borderRadius: "8px",
               }}
               onClick={() => setBride(false)}
@@ -49,8 +46,6 @@ export default function AboutUs() {
                 backgroundSize: "cover",
                 height: "800px",
                 width: "48%",
-                borderColor: "primary.main",
-                border: 2,
                 borderRadius: "8px",
               }}
               onClick={() => setBride(true)}
@@ -61,12 +56,10 @@ export default function AboutUs() {
           {groom && (
             <Box
               sx={{
-                backgroundImage: `url(https://i.ibb.co/JpGkZBg/DSC00868.jpg)`,
+                backgroundImage: `url(https://i.imgur.com/8BkQy0P.jpg)`,
                 backgroundSize: "cover",
                 height: "800px",
                 width: "48%",
-                borderColor: "primary.main",
-                border: 2,
                 borderRadius: "8px",
               }}
               onClick={() => setGroom(false)}
@@ -81,8 +74,6 @@ export default function AboutUs() {
                 backgroundSize: "cover",
                 height: "800px",
                 width: "48%",
-                borderColor: "primary.main",
-                border: 2,
                 borderRadius: "8px",
               }}
               onClick={() => setGroom(true)}

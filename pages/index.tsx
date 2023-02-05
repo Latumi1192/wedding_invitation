@@ -3,8 +3,8 @@ import router from "next/router";
 
 const Home = () => {
   const bgStyle = {
-    backgroundImage: `url(https://i.ibb.co/R6sH8vd/DSC00868.jpg)`,
-    height: "950px",
+    backgroundImage: `url(https://i.imgur.com/A5wK8RA.gif)`,
+    height: "930px",
     width: "100%",
     backgroundSize: "cover",
     backgroundPosition: "center",
