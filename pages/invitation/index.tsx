@@ -1,5 +1,4 @@
-import { Button } from "@mui/material";
-import router from "next/router";
+import GuestForm from "@/features/presentation/components/GuestForm";
 
 const Home = () => {
   const bgStyle = {
@@ -12,13 +11,7 @@ const Home = () => {
 
   return (
     <div style={bgStyle}>
-      <Button
-        onClick={() => {
-          router.push("/invitation");
-        }}
-      >
-        Tham dự
-      </Button>
+      <GuestForm />
     </div>
   );
 };
