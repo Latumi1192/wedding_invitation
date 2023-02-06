@@ -1,33 +1,40 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import {
   Button,
   MenuItem,
   Menu,
   createTheme,
   ThemeProvider,
-} from "@mui/material";
-import PageBar from "./PageBar";
+} from '@mui/material';
+import PageBar from './PageBar';
 
 export default function GuestForm() {
-  const [guestOf, setGuestOf] = React.useState("Khách của");
-  const [event, setEvent] = React.useState("Đến dự");
+  const [guestOf, setGuestOf] = React.useState('Khách của');
+  const [event, setEvent] = React.useState('Đến dự');
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl2, setAnchorEl2] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
+  const open2 = Boolean(anchorEl2);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleClick2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl2(event.currentTarget);
+  };
   const handleClose = () => {
     setAnchorEl(null);
+    setAnchorEl2(null);
   };
 
   const theme = createTheme({
     palette: {
       primary: {
-        light: "#b2dfdb",
-        main: "#5F8575",
+        light: '#b2dfdb',
+        main: '#5F8575',
       },
     },
   });
@@ -43,14 +50,14 @@ export default function GuestForm() {
             mt: 1,
             width: 550,
             border: 3,
-            backgroundColor: "primary.light",
-            borderColor: "primary.main",
-            borderRadius: "16px",
-            "& .MuiTextField-root": { m: 2, width: "25ch" },
-            "& .MuiButton-root": { mt: 1, ml: 2, mb: 1 },
-            "& .MuiTypography-root": { ml: 2, mb: 0 },
-            "& .MuiFormGroup-root": { mt: 0, ml: 1 },
-            "& .MuiFormControlLabel-root": { ml: 1 },
+            backgroundColor: 'primary.light',
+            borderColor: 'primary.main',
+            borderRadius: '16px',
+            '& .MuiTextField-root': { m: 2, width: '25ch' },
+            '& .MuiButton-root': { mt: 1, ml: 2, mb: 1 },
+            '& .MuiTypography-root': { ml: 2, mb: 0 },
+            '& .MuiFormGroup-root': { mt: 0, ml: 1 },
+            '& .MuiFormControlLabel-root': { ml: 1 },
           }}
           noValidate
           autoComplete="off"
@@ -69,9 +76,9 @@ export default function GuestForm() {
           <div>
             <Button
               id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
+              aria-controls={open ? 'basic-menu' : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              aria-expanded={open ? 'true' : undefined}
               variant="outlined"
               onClick={handleClick}
             >
@@ -83,12 +90,12 @@ export default function GuestForm() {
               open={open}
               onClose={handleClose}
               MenuListProps={{
-                "aria-labelledby": "basic-button",
+                'aria-labelledby': 'basic-button',
               }}
             >
               <MenuItem
                 onClick={() => {
-                  setGuestOf("Cô Dâu");
+                  setGuestOf('Cô Dâu');
                   handleClose();
                 }}
               >
@@ -96,7 +103,7 @@ export default function GuestForm() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  setGuestOf("Chú Rể");
+                  setGuestOf('Chú Rể');
                   handleClose();
                 }}
               >
@@ -104,30 +111,30 @@ export default function GuestForm() {
               </MenuItem>
             </Menu>
           </div>
-          {guestOf == "Cô Dâu" && (
+          {guestOf == 'Cô Dâu' && (
             <div>
               <Button
                 id="bride-button"
-                aria-controls={open ? "bride-event-menu" : undefined}
+                aria-controls={open ? 'bride-event-menu' : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
+                aria-expanded={open ? 'true' : undefined}
                 variant="outlined"
-                onClick={handleClick}
+                onClick={handleClick2}
               >
                 {event}
               </Button>
               <Menu
                 id="bride-event-menu"
-                anchorEl={anchorEl}
-                open={open}
+                anchorEl={anchorEl2}
+                open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  "aria-labelledby": "bride-button",
+                  'aria-labelledby': 'bride-button',
                 }}
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent("Nhà Cô Dâu");
+                    setEvent('Nhà Cô Dâu');
                     handleClose();
                   }}
                 >
@@ -135,7 +142,7 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent("Nhà hàng Long Vĩ");
+                    setEvent('Nhà hàng Long Vĩ');
                     handleClose();
                   }}
                 >
@@ -144,30 +151,30 @@ export default function GuestForm() {
               </Menu>
             </div>
           )}
-          {guestOf == "Chú Rể" && (
+          {guestOf == 'Chú Rể' && (
             <div>
               <Button
                 id="groom-button"
-                aria-controls={open ? "groom-event-menu" : undefined}
+                aria-controls={open ? 'groom-event-menu' : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
+                aria-expanded={open ? 'true' : undefined}
                 variant="outlined"
-                onClick={handleClick}
+                onClick={handleClick2}
               >
                 {event}
               </Button>
               <Menu
                 id="groom-event-menu"
-                anchorEl={anchorEl}
-                open={open}
+                anchorEl={anchorEl2}
+                open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  "aria-labelledby": "groom-button",
+                  'aria-labelledby': 'groom-button',
                 }}
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent("Nhà chú rể");
+                    setEvent('Nhà chú rể');
                     handleClose();
                   }}
                 >
@@ -175,7 +182,7 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent("Nhà hàng Long Vĩ");
+                    setEvent('Nhà hàng Long Vĩ');
                     handleClose();
                   }}
                 >
