@@ -51,6 +51,14 @@ export default function Confirmation() {
               router.push("/photoslide");
             }}
           >
+            Tìm hiểu cô dâu và chú rể
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              router.push("/photoslide");
+            }}
+          >
             Xem ảnh của chúng tôi
           </Button>
         </Box>

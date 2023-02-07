@@ -65,7 +65,7 @@ export default function GuestForm() {
             borderColor: "primary.main",
             borderRadius: "16px",
             "& .MuiTextField-root": { m: 2, maxWidth: "95%" },
-            "& .MuiButton-root": { mt: 1, ml: 2, mb: 1 },
+            "& .MuiButton-root": { mt: 1, ml: 2, mb: 1, mr: 2 },
             "& .MuiTypography-root": { ml: 2, mb: 0 },
             "& .MuiFormGroup-root": { mt: 0, ml: 1 },
             "& .MuiFormControlLabel-root": { ml: 1 },
