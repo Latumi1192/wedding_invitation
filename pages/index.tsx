@@ -1,5 +1,7 @@
+import Confirmation from "@/features/presentation/components/Confirmation";
 import { Button } from "@mui/material";
 import router from "next/router";
+import ConfirmationPage from "./confirmation";
 
 const Home = () => {
   const bgStyle = {
@@ -11,15 +13,16 @@ const Home = () => {
   };
 
   return (
-    <div style={bgStyle}>
-      <Button
-        onClick={() => {
-          router.push("/invitation");
-        }}
-      >
-        Tham dự
-      </Button>
-    </div>
+    // <div style={bgStyle}>
+    //   <Button
+    //     onClick={() => {
+    //       router.push("/invitation");
+    //     }}
+    //   >
+    //     Tham dự
+    //   </Button>
+    // </div>
+    <ConfirmationPage />
   );
 };
 

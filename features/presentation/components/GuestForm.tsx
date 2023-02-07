@@ -1,18 +1,25 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import {
   Button,
   MenuItem,
   Menu,
   createTheme,
   ThemeProvider,
-} from '@mui/material';
-import PageBar from './PageBar';
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
+import PageBar from "./PageBar";
+import "@fontsource/itim";
+import { useRouter } from "next/router";
 
 export default function GuestForm() {
-  const [guestOf, setGuestOf] = React.useState('Khách của');
-  const [event, setEvent] = React.useState('Đến dự');
+  const router = useRouter();
+
+  const [guestOf, setGuestOf] = React.useState("Khách của");
+  const [moreGuest, setMoreGuest] = React.useState(false);
+  const [event, setEvent] = React.useState("Đến dự");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorEl2, setAnchorEl2] = React.useState<null | HTMLElement>(null);
 
@@ -31,10 +38,13 @@ export default function GuestForm() {
   };
 
   const theme = createTheme({
+    typography: {
+      fontFamily: "Itim",
+    },
     palette: {
       primary: {
-        light: '#b2dfdb',
-        main: '#5F8575',
+        light: "#b2dfdb",
+        main: "#5F8575",
       },
     },
   });
@@ -48,16 +58,15 @@ export default function GuestForm() {
           m="auto"
           sx={{
             mt: 1,
-            width: 550,
             border: 3,
-            backgroundColor: 'primary.light',
-            borderColor: 'primary.main',
-            borderRadius: '16px',
-            '& .MuiTextField-root': { m: 2, width: '25ch' },
-            '& .MuiButton-root': { mt: 1, ml: 2, mb: 1 },
-            '& .MuiTypography-root': { ml: 2, mb: 0 },
-            '& .MuiFormGroup-root': { mt: 0, ml: 1 },
-            '& .MuiFormControlLabel-root': { ml: 1 },
+            backgroundColor: "primary.light",
+            borderColor: "primary.main",
+            borderRadius: "16px",
+            "& .MuiTextField-root": { m: 2, width: "25ch" },
+            "& .MuiButton-root": { mt: 1, ml: 2, mb: 1 },
+            "& .MuiTypography-root": { ml: 2, mb: 0 },
+            "& .MuiFormGroup-root": { mt: 0, ml: 1 },
+            "& .MuiFormControlLabel-root": { ml: 1 },
           }}
           noValidate
           autoComplete="off"
@@ -71,14 +80,15 @@ export default function GuestForm() {
               label="Tên"
               name="Name"
               placeholder="Bạn tên là?"
+              sx={{ fontStyle: "italic" }}
             />
           </div>
           <div>
             <Button
               id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
+              aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
+              aria-expanded={open ? "true" : undefined}
               variant="outlined"
               onClick={handleClick}
             >
@@ -90,12 +100,13 @@ export default function GuestForm() {
               open={open}
               onClose={handleClose}
               MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                "aria-labelledby": "basic-button",
               }}
             >
               <MenuItem
                 onClick={() => {
-                  setGuestOf('Cô Dâu');
+                  setGuestOf("Cô Dâu");
+                  setEvent("Đến dự");
                   handleClose();
                 }}
               >
@@ -103,7 +114,8 @@ export default function GuestForm() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  setGuestOf('Chú Rể');
+                  setGuestOf("Chú Rể");
+                  setEvent("Đến dự");
                   handleClose();
                 }}
               >
@@ -111,13 +123,13 @@ export default function GuestForm() {
               </MenuItem>
             </Menu>
           </div>
-          {guestOf == 'Cô Dâu' && (
+          {guestOf == "Cô Dâu" && (
             <div>
               <Button
                 id="bride-button"
-                aria-controls={open ? 'bride-event-menu' : undefined}
+                aria-controls={open ? "bride-event-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 variant="outlined"
                 onClick={handleClick2}
               >
@@ -129,35 +141,43 @@ export default function GuestForm() {
                 open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  'aria-labelledby': 'bride-button',
+                  "aria-labelledby": "bride-button",
                 }}
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent('Nhà Cô Dâu');
+                    setEvent("Lễ vu quy - Nhà cô dâu - 14:00 25/02/2023");
                     handleClose();
                   }}
                 >
-                  Nhà cô dâu
+                  Lễ vu quy - Nhà cô dâu - 14:00 25/02/2023
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent('Nhà hàng Long Vĩ');
+                    setEvent("Bữa cơm thân mật - Nhà cô dâu");
                     handleClose();
                   }}
                 >
-                  Nhà hàng Long Vĩ
+                  Bữa cơm thân mật - Nhà cô dâu
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
+                    handleClose();
+                  }}
+                >
+                  Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023
                 </MenuItem>
               </Menu>
             </div>
           )}
-          {guestOf == 'Chú Rể' && (
+          {guestOf == "Chú Rể" && (
             <div>
               <Button
                 id="groom-button"
-                aria-controls={open ? 'groom-event-menu' : undefined}
+                aria-controls={open ? "groom-event-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 variant="outlined"
                 onClick={handleClick2}
               >
@@ -169,31 +189,67 @@ export default function GuestForm() {
                 open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  'aria-labelledby': 'groom-button',
+                  "aria-labelledby": "groom-button",
                 }}
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent('Nhà chú rể');
+                    setEvent("Lễ thành hồn - Nhà chú rể - 15:00 25/02/2023");
                     handleClose();
                   }}
                 >
-                  Nhà chú rể
+                  Lễ thành hồn - Nhà chú rể - 15:00 25/02/2023
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent('Nhà hàng Long Vĩ');
+                    setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
                     handleClose();
                   }}
                 >
-                  Nhà hàng Long Vĩ
+                  Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023
                 </MenuItem>
               </Menu>
             </div>
           )}
           <div>
-            <Button variant="contained">Sẽ đến</Button>
-            <Button>Không thể đến</Button>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onChange={() => {
+                    setMoreGuest(!moreGuest);
+                  }}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+              }
+              label="Thêm người tham gia"
+            />
+            <div>
+              {moreGuest && (
+                <div>
+                  <TextField
+                    size="medium"
+                    focused
+                    required
+                    id="outlined-required"
+                    label="Số người"
+                    name="Number"
+                    placeholder="1,2,3"
+                    sx={{ fontStyle: "italic" }}
+                  />
+                </div>
+              )}
+            </div>
+            <div>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  router.push("/confirmation");
+                }}
+              >
+                Sẽ đến
+              </Button>
+              <Button sx={{ fontStyle: "italic" }}>Không thể đến</Button>
+            </div>
           </div>
         </Box>
       </Box>

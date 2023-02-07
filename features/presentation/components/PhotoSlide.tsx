@@ -20,14 +20,37 @@ export default function App() {
       </div>
       <Box>
         <div ref={ref} className="keen-slider">
-          <div className="keen-slider__slide number-slide1">1</div>
-          <div className="keen-slider__slide number-slide2">2</div>
-          <div className="keen-slider__slide number-slide3">3</div>
-          <div className="keen-slider__slide number-slide4">4</div>
-          <div className="keen-slider__slide number-slide5">5</div>
-          <div className="keen-slider__slide number-slide6">6</div>
+          <Box
+            className="keen-slider__slide number-slide1"
+            sx={{
+              backgroundImage: `url(https://i.ibb.co/p29SvtP/1.png)`,
+              backgroundSize: "cover",
+            }}
+          />
+          <Box
+            className="keen-slider__slide number-slide2"
+            sx={{
+              backgroundImage: `url(https://i.ibb.co/gMVQGBz/2.png)`,
+              backgroundSize: "cover",
+            }}
+          />
+          <Box
+            className="keen-slider__slide number-slide3"
+            sx={{
+              backgroundImage: `url(https://i.ibb.co/x2LrN3X/3.png)`,
+              backgroundSize: "cover",
+            }}
+          />
+          <Box
+            className="keen-slider__slide number-slide4"
+            sx={{
+              backgroundImage: `url(https://i.ibb.co/nPZVq4b/nh-b-a-website.png)`,
+              backgroundSize: "cover",
+            }}
+          />
         </div>
       </Box>
+      <Box></Box>
     </div>
   );
 }

@@ -10,6 +10,10 @@ export default function PageBar() {
   const router = useRouter();
 
   const theme = createTheme({
+    typography: {
+      fontFamily: "Itim",
+      button: {},
+    },
     palette: {
       primary: {
         main: "#5F8575",

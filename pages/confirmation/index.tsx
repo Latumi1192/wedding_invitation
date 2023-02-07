@@ -1,6 +1,7 @@
-import GuestForm from "@/features/presentation/components/GuestForm";
+import Confirmation from "@/features/presentation/components/Confirmation";
+import React from "react";
 
-const InvitaionPage = () => {
+const ConfirmationPage = () => {
   const bgStyle = {
     backgroundImage: `url(https://i.ibb.co/R6sH8vd/DSC00868.jpg)`,
     height: "950px",
@@ -8,12 +9,11 @@ const InvitaionPage = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
-
   return (
     <div style={bgStyle}>
-      <GuestForm />
+      <Confirmation />
     </div>
   );
 };
 
-export default InvitaionPage;
+export default ConfirmationPage;
