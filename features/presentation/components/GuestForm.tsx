@@ -64,7 +64,7 @@ export default function GuestForm() {
             backgroundColor: "primary.light",
             borderColor: "primary.main",
             borderRadius: "16px",
-            "& .MuiTextField-root": { m: 2, width: "25ch" },
+            "& .MuiTextField-root": { m: 2, maxWidth: "95%" },
             "& .MuiButton-root": { mt: 1, ml: 2, mb: 1 },
             "& .MuiTypography-root": { ml: 2, mb: 0 },
             "& .MuiFormGroup-root": { mt: 0, ml: 1 },
@@ -241,6 +241,16 @@ export default function GuestForm() {
                 </div>
               )}
             </div>
+            <TextField
+              focused
+              multiline
+              style={{ margin: 8 }}
+              label="Lời chúc"
+              name="Wishing"
+              rows={4}
+              placeholder="Gửi lời chúc đến cô dâu và chú rể..."
+              fullWidth
+            />
             <div>
               <Button
                 variant="contained"

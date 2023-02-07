@@ -45,7 +45,6 @@ export default function Confirmation() {
         <Typography>tại PLACEHOLDER4, </Typography>
         <Typography>cùng với PLAYCEHOLDER5 </Typography>
         <Box>
-          <Button variant="contained">Để lại lời nhắn cho chúng tôi</Button>
           <Button
             variant="contained"
             onClick={() => {
