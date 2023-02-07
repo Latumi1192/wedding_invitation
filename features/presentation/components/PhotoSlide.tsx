@@ -3,6 +3,9 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import PageBar from "./PageBar";
 import { Box, createTheme, ThemeProvider } from "@mui/material";
+import "@fontsource/itim";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function PhotoSlide() {
   const theme = createTheme({
@@ -16,53 +19,31 @@ export default function PhotoSlide() {
       },
     },
   });
-  const [ref] = useKeenSlider<HTMLDivElement>({
-    loop: true,
-    mode: "free",
-    slides: {
-      perView: 3,
-      spacing: 15,
-    },
-  });
+  const images = [
+    "https://i.ibb.co/p29SvtP/1.png",
+    "https://i.ibb.co/gMVQGBz/2.png",
+    "https://i.ibb.co/x2LrN3X/3.png",
+    "https://i.ibb.co/nPZVq4b/nh-b-a-website.png",
+    "https://i.ibb.co/p29SvtP/1.png",
+    "https://i.ibb.co/gMVQGBz/2.png",
+    "https://i.ibb.co/x2LrN3X/3.png",
+    "https://i.ibb.co/p29SvtP/1.png",
+    "https://i.ibb.co/gMVQGBz/2.png",
+    "https://i.ibb.co/x2LrN3X/3.png",
+  ];
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <div>
-          <PageBar />
-        </div>
-        <Box>
-          <div ref={ref} className="keen-slider">
-            <Box
-              className="keen-slider__slide number-slide1"
-              sx={{
-                backgroundImage: `url(https://i.ibb.co/p29SvtP/1.png)`,
-                backgroundSize: "cover",
-              }}
-            />
-            <Box
-              className="keen-slider__slide number-slide2"
-              sx={{
-                backgroundImage: `url(https://i.ibb.co/gMVQGBz/2.png)`,
-                backgroundSize: "cover",
-              }}
-            />
-            <Box
-              className="keen-slider__slide number-slide3"
-              sx={{
-                backgroundImage: `url(https://i.ibb.co/x2LrN3X/3.png)`,
-                backgroundSize: "cover",
-              }}
-            />
-            <Box
-              className="keen-slider__slide number-slide4"
-              sx={{
-                backgroundImage: `url(https://i.ibb.co/nPZVq4b/nh-b-a-website.png)`,
-                backgroundSize: "cover",
-              }}
-            />
-          </div>
-        </Box>
-        <Box></Box>
+        <PageBar />
+      </div>
+      <div className="box">
+        <Carousel useKeyboardArrows={true}>
+          {images.map((URL, index) => (
+            <div className="slide">
+              <img alt="sample_file" src={URL} key={index} />
+            </div>
+          ))}
+        </Carousel>
       </div>
     </ThemeProvider>
   );

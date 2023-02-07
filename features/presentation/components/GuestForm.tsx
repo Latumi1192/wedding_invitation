@@ -59,6 +59,8 @@ export default function GuestForm() {
           sx={{
             mt: 1,
             border: 3,
+            width: 4 / 5,
+
             backgroundColor: "primary.light",
             borderColor: "primary.main",
             borderRadius: "16px",

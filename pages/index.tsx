@@ -1,7 +1,6 @@
-import Confirmation from "@/features/presentation/components/Confirmation";
-import { Button } from "@mui/material";
+import { Box, Button, createTheme, ThemeProvider } from "@mui/material";
 import router from "next/router";
-import ConfirmationPage from "./confirmation";
+import "@fontsource/itim";
 
 const Home = () => {
   const bgStyle = {
@@ -12,17 +11,33 @@ const Home = () => {
     backgroundPosition: "center",
   };
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: "Itim",
+    },
+    palette: {
+      primary: {
+        light: "#b2dfdb",
+        main: "#5F8575",
+      },
+    },
+  });
   return (
-    // <div style={bgStyle}>
-    //   <Button
-    //     onClick={() => {
-    //       router.push("/invitation");
-    //     }}
-    //   >
-    //     Tham dự
-    //   </Button>
-    // </div>
-    <ConfirmationPage />
+    <div style={bgStyle}>
+      <ThemeProvider theme={theme}>
+        <Box>
+          <Button
+            size="large"
+            variant="outlined"
+            onClick={() => {
+              router.push("/invitation");
+            }}
+          >
+            Tham dự
+          </Button>
+        </Box>
+      </ThemeProvider>
+    </div>
   );
 };
 
