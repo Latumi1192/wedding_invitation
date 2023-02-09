@@ -48,7 +48,7 @@ export default function Confirmation() {
           <Button
             variant="contained"
             onClick={() => {
-              router.push("/photoslide");
+              router.push("/aboutus");
             }}
           >
             Tìm hiểu cô dâu và chú rể

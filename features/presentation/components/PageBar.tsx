@@ -50,8 +50,10 @@ export default function PageBar() {
             >
               Phúc đáp thiệp mời
             </Button>
-            <Button sx={{ my: 2, color: "white", display: "block" }}>
-              Contacts
+            <Button sx={{ my: 2, color: "white", display: "block" }} onClick={() => {
+                router.push("/timeline");
+              }}>
+              Timeline
             </Button>
           </Toolbar>
         </AppBar>
