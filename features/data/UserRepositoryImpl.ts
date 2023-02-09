@@ -4,7 +4,7 @@ import { UserRepository } from './UserRepository';
 export class UserRepositoryImpl implements UserRepository {
   async creatGuestData(guestData: GuestData): Promise<boolean> {
     // example with POST Request
-    const responsePOST = await fetch('http://localhost:3000/api/createGuest', {
+    const responsePOST = await fetch('/api/createGuest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export class UserRepositoryImpl implements UserRepository {
 
   async getGuests(): Promise<GuestData[]> {
     // example with GET Request
-    const responseGET = await fetch('http://localhost:3000/api/getGuests', {
+    const responseGET = await fetch('/api/getGuests', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
