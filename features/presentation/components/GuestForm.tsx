@@ -9,19 +9,40 @@ import {
   ThemeProvider,
   FormControlLabel,
   Checkbox,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import PageBar from "./PageBar";
 import "@fontsource/itim";
 import { useRouter } from "next/router";
+import { GuestData } from "@/features/domain/dto/GuestData";
+import { UserServiceImpl } from "@/features/domain/services/UserServiceImpl";
 
 export default function GuestForm() {
   const router = useRouter();
-
+  const userServ = new UserServiceImpl();
   const [guestOf, setGuestOf] = React.useState("Khách của");
   const [moreGuest, setMoreGuest] = React.useState(false);
   const [event, setEvent] = React.useState("Đến dự");
+  const [eventNumber, setEventNumber] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorEl2, setAnchorEl2] = React.useState<null | HTMLElement>(null);
+  const [guestData, setGuestData] = React.useState<GuestData>({
+    name: "",
+    guestOf: "",
+    event: 0,
+    addedGuest: 0,
+    notice: "",
+    uid: 0,
+  });
+  const [warning, setWarning] = React.useState("");
+
+  const handleChange = (event: { target: { name: any; value: any } }) => {
+    setGuestData({
+      ...guestData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const open = Boolean(anchorEl);
   const open2 = Boolean(anchorEl2);
@@ -73,6 +94,19 @@ export default function GuestForm() {
           noValidate
           autoComplete="off"
         >
+          {warning != "" && (
+            <div>
+              <Alert
+                severity="error"
+                sx={{
+                  borderRadius: "16px 16px 0px 0px",
+                }}
+              >
+                <AlertTitle>Error</AlertTitle>
+                <strong>{warning}</strong>
+              </Alert>
+            </div>
+          )}
           <div>
             <TextField
               size="medium"
@@ -80,7 +114,9 @@ export default function GuestForm() {
               required
               id="outlined-required"
               label="Tên"
-              name="Name"
+              name="name"
+              onChange={handleChange}
+              value={guestData.name}
               placeholder="Bạn tên là?"
               sx={{ fontStyle: "italic" }}
             />
@@ -148,7 +184,19 @@ export default function GuestForm() {
               >
                 <MenuItem
                   onClick={() => {
+                    setEvent(
+                      "Bữa trưa thân mật - Nhà cô dâu - 11:30 25/02/2023"
+                    );
+                    setEventNumber(1);
+                    handleClose();
+                  }}
+                >
+                  Bữa cơm thân mật - Nhà cô dâu - 11:30 25/02/2023
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
                     setEvent("Lễ vu quy - Nhà cô dâu - 14:00 25/02/2023");
+                    setEventNumber(2);
                     handleClose();
                   }}
                 >
@@ -156,15 +204,8 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent("Bữa cơm thân mật - Nhà cô dâu");
-                    handleClose();
-                  }}
-                >
-                  Bữa cơm thân mật - Nhà cô dâu
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
                     setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
+                    setEventNumber(3);
                     handleClose();
                   }}
                 >
@@ -196,7 +237,8 @@ export default function GuestForm() {
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent("Lễ thành hồn - Nhà chú rể - 15:00 25/02/2023");
+                    setEvent("Lễ thành hôn - Nhà chú rể - 15:00 25/02/2023");
+                    setEventNumber(4);
                     handleClose();
                   }}
                 >
@@ -205,6 +247,7 @@ export default function GuestForm() {
                 <MenuItem
                   onClick={() => {
                     setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
+                    setEventNumber(3);
                     handleClose();
                   }}
                 >
@@ -234,7 +277,9 @@ export default function GuestForm() {
                     required
                     id="outlined-required"
                     label="Số người"
-                    name="Number"
+                    name="addedGuest"
+                    value={guestData.addedGuest}
+                    onChange={handleChange}
                     placeholder="1,2,3"
                     sx={{ fontStyle: "italic" }}
                   />
@@ -246,7 +291,9 @@ export default function GuestForm() {
               multiline
               style={{ margin: 8 }}
               label="Lời chúc"
-              name="Wishing"
+              name="notice"
+              value={guestData.notice}
+              onChange={handleChange}
               rows={4}
               placeholder="Gửi lời chúc đến cô dâu và chú rể..."
               fullWidth
@@ -255,7 +302,14 @@ export default function GuestForm() {
               <Button
                 variant="contained"
                 onClick={() => {
-                  router.push("/confirmation");
+                  guestData.event = eventNumber;
+                  guestData.guestOf = guestOf;
+                  if (userServ.checkGuestData(guestData) != "")
+                    setWarning(userServ.checkGuestData(guestData));
+                  else {
+                    userServ.creatGuestData(guestData);
+                    router.push("/confirmation");
+                  }
                 }}
               >
                 Sẽ đến
