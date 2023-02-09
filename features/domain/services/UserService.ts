@@ -1,5 +1,6 @@
-import { GuestData } from "../dto/GuestData";
+import { GuestData } from '../dto/GuestData';
 
 export interface UserService {
-  creatGuestData(guestData: GuestData): boolean;
+  creatGuestData(guestData: GuestData): Promise<boolean>;
+  getGuests(): Promise<GuestData[]>;
 }
