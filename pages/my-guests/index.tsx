@@ -85,6 +85,7 @@ const MyGuestsPage = () => {
             <p>Khách của: {guest.guestOf}</p>
             <p>Đến dự: {guest.event}</p>
             <p>Thêm người: {guest.addedGuest}</p>
+            <p>Email: {guest.email}</p>
             <p>Thông tin thêm: {guest.notice}</p>
             -------
           </div>

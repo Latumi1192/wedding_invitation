@@ -3,7 +3,7 @@ import React from "react";
 
 const TimelinePage = () => {
   const bgStyle = {
-    backgroundColor: "#abbdce",
+    backgroundColor: "white",
   };
   return (
     <div style={bgStyle}>

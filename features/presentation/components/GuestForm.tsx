@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 import {
   Button,
   MenuItem,
@@ -11,31 +11,41 @@ import {
   Checkbox,
   Alert,
   AlertTitle,
-} from '@mui/material';
-import PageBar from './PageBar';
-import '@fontsource/itim';
-import { useRouter } from 'next/router';
-import { GuestData } from '@/features/domain/dto/GuestData';
-import { UserServiceImpl } from '@/features/domain/services/UserServiceImpl';
+} from "@mui/material";
+import PageBar from "./PageBar";
+import "@fontsource/itim";
+import { useRouter } from "next/router";
+import { GuestData } from "@/features/domain/dto/GuestData";
+import { UserServiceImpl } from "@/features/domain/services/UserServiceImpl";
+import { send } from "emailjs-com";
 
 export default function GuestForm() {
   const router = useRouter();
   const userServ = new UserServiceImpl();
-  const [guestOf, setGuestOf] = React.useState('Khách của');
+  const [guestOf, setGuestOf] = React.useState("Khách của");
   const [moreGuest, setMoreGuest] = React.useState(false);
-  const [event, setEvent] = React.useState('Đến dự');
+  const [event, setEvent] = React.useState("Đến dự");
   const [eventNumber, setEventNumber] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorEl2, setAnchorEl2] = React.useState<null | HTMLElement>(null);
   const [guestData, setGuestData] = React.useState<GuestData>({
-    name: '',
-    guestOf: '',
+    name: "",
+    guestOf: "",
     event: 0,
     addedGuest: 0,
-    notice: '',
+    notice: "",
+    email: "",
     uid: 0,
   });
-  const [warning, setWarning] = React.useState('');
+
+  const [toSend, setToSend] = React.useState({
+    from_name: "",
+    to_name: "",
+    message: "",
+    reply_to: "",
+  });
+
+  const [warning, setWarning] = React.useState("");
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     setGuestData({
@@ -60,12 +70,12 @@ export default function GuestForm() {
 
   const theme = createTheme({
     typography: {
-      fontFamily: 'Itim',
+      fontFamily: "Itim",
     },
     palette: {
       primary: {
-        light: '#b2dfdb',
-        main: '#5F8575',
+        light: "#b2dfdb",
+        main: "#5F8575",
       },
     },
   });
@@ -82,24 +92,24 @@ export default function GuestForm() {
             border: 3,
             width: 4 / 5,
 
-            backgroundColor: 'primary.light',
-            borderColor: 'primary.main',
-            borderRadius: '16px',
-            '& .MuiTextField-root': { m: 2, maxWidth: '95%' },
-            '& .MuiButton-root': { mt: 1, ml: 2, mb: 1, mr: 2 },
-            '& .MuiTypography-root': { ml: 2, mb: 0 },
-            '& .MuiFormGroup-root': { mt: 0, ml: 1 },
-            '& .MuiFormControlLabel-root': { ml: 1 },
+            backgroundColor: "primary.light",
+            borderColor: "primary.main",
+            borderRadius: "16px",
+            "& .MuiTextField-root": { m: 2, maxWidth: "95%" },
+            "& .MuiButton-root": { mt: 1, ml: 2, mb: 1, mr: 2 },
+            "& .MuiTypography-root": { ml: 2, mb: 0 },
+            "& .MuiFormGroup-root": { mt: 0, ml: 1 },
+            "& .MuiFormControlLabel-root": { ml: 1 },
           }}
           noValidate
           autoComplete="off"
         >
-          {warning != '' && (
+          {warning != "" && (
             <div>
               <Alert
                 severity="error"
                 sx={{
-                  borderRadius: '16px 16px 0px 0px',
+                  borderRadius: "16px 16px 0px 0px",
                 }}
               >
                 <AlertTitle>Error</AlertTitle>
@@ -118,15 +128,15 @@ export default function GuestForm() {
               onChange={handleChange}
               value={guestData.name}
               placeholder="Bạn tên là?"
-              sx={{ fontStyle: 'italic' }}
+              sx={{ fontStyle: "italic" }}
             />
           </div>
           <div>
             <Button
               id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
+              aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
+              aria-expanded={open ? "true" : undefined}
               variant="outlined"
               onClick={handleClick}
             >
@@ -138,13 +148,13 @@ export default function GuestForm() {
               open={open}
               onClose={handleClose}
               MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                "aria-labelledby": "basic-button",
               }}
             >
               <MenuItem
                 onClick={() => {
-                  setGuestOf('Cô Dâu');
-                  setEvent('Đến dự');
+                  setGuestOf("Cô Dâu");
+                  setEvent("Đến dự");
                   handleClose();
                 }}
               >
@@ -152,8 +162,8 @@ export default function GuestForm() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  setGuestOf('Chú Rể');
-                  setEvent('Đến dự');
+                  setGuestOf("Chú Rể");
+                  setEvent("Đến dự");
                   handleClose();
                 }}
               >
@@ -161,13 +171,13 @@ export default function GuestForm() {
               </MenuItem>
             </Menu>
           </div>
-          {guestOf == 'Cô Dâu' && (
+          {guestOf == "Cô Dâu" && (
             <div>
               <Button
                 id="bride-button"
-                aria-controls={open ? 'bride-event-menu' : undefined}
+                aria-controls={open ? "bride-event-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 variant="outlined"
                 onClick={handleClick2}
               >
@@ -179,13 +189,13 @@ export default function GuestForm() {
                 open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  'aria-labelledby': 'bride-button',
+                  "aria-labelledby": "bride-button",
                 }}
               >
                 <MenuItem
                   onClick={() => {
                     setEvent(
-                      'Bữa trưa thân mật - Nhà cô dâu - 11:30 25/02/2023'
+                      "Bữa trưa thân mật - Nhà cô dâu - 11:30 25/02/2023"
                     );
                     setEventNumber(1);
                     handleClose();
@@ -195,7 +205,7 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent('Lễ vu quy - Nhà cô dâu - 14:00 25/02/2023');
+                    setEvent("Lễ vu quy - Nhà cô dâu - 14:00 25/02/2023");
                     setEventNumber(2);
                     handleClose();
                   }}
@@ -204,7 +214,7 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent('Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023');
+                    setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
                     setEventNumber(3);
                     handleClose();
                   }}
@@ -214,13 +224,13 @@ export default function GuestForm() {
               </Menu>
             </div>
           )}
-          {guestOf == 'Chú Rể' && (
+          {guestOf == "Chú Rể" && (
             <div>
               <Button
                 id="groom-button"
-                aria-controls={open ? 'groom-event-menu' : undefined}
+                aria-controls={open ? "groom-event-menu" : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
+                aria-expanded={open ? "true" : undefined}
                 variant="outlined"
                 onClick={handleClick2}
               >
@@ -232,12 +242,12 @@ export default function GuestForm() {
                 open={open2}
                 onClose={handleClose}
                 MenuListProps={{
-                  'aria-labelledby': 'groom-button',
+                  "aria-labelledby": "groom-button",
                 }}
               >
                 <MenuItem
                   onClick={() => {
-                    setEvent('Lễ thành hôn - Nhà chú rể - 15:00 25/02/2023');
+                    setEvent("Lễ thành hôn - Nhà chú rể - 15:00 25/02/2023");
                     setEventNumber(4);
                     handleClose();
                   }}
@@ -246,7 +256,7 @@ export default function GuestForm() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    setEvent('Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023');
+                    setEvent("Tiệc cưới - Nhà hàng Long Vĩ - 17:30 25/02/2023");
                     setEventNumber(3);
                     handleClose();
                   }}
@@ -263,7 +273,7 @@ export default function GuestForm() {
                   onChange={() => {
                     setMoreGuest(!moreGuest);
                   }}
-                  inputProps={{ 'aria-label': 'controlled' }}
+                  inputProps={{ "aria-label": "controlled" }}
                 />
               }
               label="Thêm người tham gia"
@@ -281,11 +291,23 @@ export default function GuestForm() {
                     value={guestData.addedGuest}
                     onChange={handleChange}
                     placeholder="1,2,3"
-                    sx={{ fontStyle: 'italic' }}
+                    sx={{ fontStyle: "italic" }}
                   />
                 </div>
               )}
             </div>
+            <TextField
+              size="medium"
+              focused
+              required
+              id="outlined-required"
+              label="Email"
+              name="email"
+              onChange={handleChange}
+              value={guestData.email}
+              placeholder="Email của bạn"
+              sx={{ fontStyle: "italic" }}
+            />
             <TextField
               focused
               multiline
@@ -304,17 +326,74 @@ export default function GuestForm() {
                 onClick={() => {
                   guestData.event = eventNumber;
                   guestData.guestOf = guestOf;
-                  if (userServ.checkGuestData(guestData) !== '')
+                  if (userServ.checkGuestData(guestData) !== "")
                     setWarning(userServ.checkGuestData(guestData));
                   else {
+                    console.log(guestData);
+                    const message = userServ.generateMessageConfirm(
+                      guestData.event
+                    );
+                    console.log(message);
+
+                    toSend.from_name = "Thủy và Hải";
+                    toSend.to_name = guestData.name;
+                    toSend.reply_to = guestData.email;
+                    toSend.message = message;
+                    console.log(toSend);
+                    send(
+                      "service_75tieyf",
+                      "template_t2ik7ms",
+                      toSend,
+                      "5K6nf78Igqwqjjosu"
+                    )
+                      .then((response) => {
+                        console.log("SUCCESS!", response.status, response.text);
+                      })
+                      .catch((err) => {
+                        console.log("FAILED...", err);
+                      });
                     userServ.creatGuestData(guestData);
-                    router.push('/confirmation');
+                    router.push("/confirmation");
                   }
                 }}
               >
                 Sẽ đến
               </Button>
-              <Button sx={{ fontStyle: 'italic' }}>Không thể đến</Button>
+              <Button
+                sx={{ fontStyle: "italic" }}
+                onClick={() => {
+                  guestData.event = 5;
+                  guestData.guestOf = "Không đến";
+                  if (userServ.checkGuestData(guestData) !== "")
+                    setWarning(userServ.checkGuestData(guestData));
+                  else {
+                    console.log(guestData);
+                    const message = userServ.generateMessageDeny();
+                    console.log(message);
+                    toSend.from_name = "Thủy và Hải";
+                    toSend.to_name = guestData.name;
+                    toSend.reply_to = guestData.email;
+                    toSend.message = message;
+                    console.log(toSend);
+                    send(
+                      "service_75tieyf",
+                      "template_t2ik7ms",
+                      toSend,
+                      "5K6nf78Igqwqjjosu"
+                    )
+                      .then((response) => {
+                        console.log("SUCCESS!", response.status, response.text);
+                      })
+                      .catch((err) => {
+                        console.log("FAILED...", err);
+                      });
+                    userServ.creatGuestData(guestData);
+                    router.push("/aboutus");
+                  }
+                }}
+              >
+                Không thể đến
+              </Button>
             </div>
           </div>
         </Box>
