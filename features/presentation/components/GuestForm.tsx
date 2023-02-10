@@ -74,8 +74,10 @@ export default function GuestForm() {
     },
     palette: {
       primary: {
-        light: "#b2dfdb",
-        main: "#5F8575",
+        //light: "#b2dfdb",
+        light: "#abbdce",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
@@ -91,7 +93,6 @@ export default function GuestForm() {
             mt: 1,
             border: 3,
             width: 4 / 5,
-
             backgroundColor: "primary.light",
             borderColor: "primary.main",
             borderRadius: "16px",

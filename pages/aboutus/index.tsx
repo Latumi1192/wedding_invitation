@@ -4,6 +4,10 @@ import React from "react";
 import "@fontsource/itim";
 
 const AboutUsPage = () => {
+  const bgStyle = {
+    backgroundColor: "#abbdce",
+    backgroundImage: "none",
+  };
   const theme = createTheme({
     typography: {
       fontFamily: "Itim",
@@ -13,15 +17,19 @@ const AboutUsPage = () => {
     },
     palette: {
       primary: {
-        light: "#b2dfdb",
-        main: "#5F8575",
+        //light: "#b2dfdb",
+        light: "#abbdce",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
   return (
-    <ThemeProvider theme={theme}>
-      <AboutUs />
-    </ThemeProvider>
+    <div style={bgStyle}>
+      <ThemeProvider theme={theme}>
+        <AboutUs />
+      </ThemeProvider>
+    </div>
   );
 };
 

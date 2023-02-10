@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
 export default function PageBar() {
   const router = useRouter();
 
@@ -17,7 +16,8 @@ export default function PageBar() {
     },
     palette: {
       primary: {
-        main: "#5F8575",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
@@ -27,7 +27,7 @@ export default function PageBar() {
         <AppBar position="static">
           <Toolbar sx={{ justifyContent: "space-evenly" }}>
             <Button
-              sx={{ color: "white", display: "block" }}
+              sx={{ my: 1, color: "white", display: "block" }}
               onClick={() => {
                 router.push("/aboutus");
               }}
@@ -35,7 +35,7 @@ export default function PageBar() {
               About us
             </Button>
             <Button
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 1, color: "white", display: "block" }}
               onClick={() => {
                 router.push("/photoslide");
               }}
@@ -43,17 +43,20 @@ export default function PageBar() {
               Photo
             </Button>
             <Button
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 1, color: "white", display: "block" }}
+              onClick={() => {
+                router.push("/timeline");
+              }}
+            >
+              Timeline
+            </Button>
+            <Button
+              sx={{ my: 1, color: "white", display: "block" }}
               onClick={() => {
                 router.push("/invitation");
               }}
             >
               Phúc đáp thiệp mời
-            </Button>
-            <Button sx={{ my: 2, color: "white", display: "block" }} onClick={() => {
-                router.push("/timeline");
-              }}>
-              Timeline
             </Button>
           </Toolbar>
         </AppBar>

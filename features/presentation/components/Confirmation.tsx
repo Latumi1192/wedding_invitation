@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Button, createTheme, ThemeProvider, Typography } from "@mui/material";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
 import PageBar from "./PageBar";
 import "@fontsource/itim";
 import { useRouter } from "next/router";
@@ -17,8 +17,10 @@ export default function Confirmation() {
     },
     palette: {
       primary: {
-        light: "#b2dfdb",
-        main: "#5F8575",
+        //light: "#b2dfdb",
+        light: "#abbdce",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
@@ -39,29 +41,25 @@ export default function Confirmation() {
           "& .MuiBox-root": { mt: 10 },
         }}
       >
-        <Typography>Xin cám ơn PLACEHOLDER, </Typography>
-        <Typography>Bạn sẽ đến dự PLACEHOLDER2 với chúng tôi, </Typography>
-        <Typography>vào lúc PLACEHOLDER3, </Typography>
-        <Typography>tại PLACEHOLDER4, </Typography>
-        <Typography>cùng với PLAYCEHOLDER5 </Typography>
-        <Box>
-          <Button
-            variant="contained"
-            onClick={() => {
-              router.push("/aboutus");
-            }}
-          >
-            Tìm hiểu cô dâu và chú rể
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => {
-              router.push("/photoslide");
-            }}
-          >
-            Xem ảnh của chúng tôi
-          </Button>
-        </Box>
+        <img src="https://i.imgur.com/w55UKKU.jpg"></img>
+      </Box>
+      <Box>
+        <Button
+          variant="contained"
+          onClick={() => {
+            router.push("/aboutus");
+          }}
+        >
+          Tìm hiểu cô dâu và chú rể
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            router.push("/photoslide");
+          }}
+        >
+          Xem ảnh của chúng tôi
+        </Button>
       </Box>
     </ThemeProvider>
   );

@@ -18,16 +18,17 @@ export default function Timelines() {
     palette: {
       primary: {
         light: "#b2dfdb",
-        main: "#5F8575",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
   return (
     <ThemeProvider theme={theme}>
       <PageBar />
-      <div style={{ margin: 0, padding: 0 }}>
+      <div style={{ margin: "auto", padding: 0 }}>
         <img
-          src="https://i.imgur.com/PJBeAtU.jpg"
+          src="https://i.imgur.com/9BLlU37.jpg"
           style={{
             maxWidth: "100%",
             height: "auto",
@@ -65,7 +66,6 @@ export default function Timelines() {
           />
         </a>
       </div>
-
       <div style={{ margin: 0, padding: 0 }}>
         <a href="https://www.google.com/maps/dir/53.4609499,9.9818239/51+Ng.+%C4%90%C3%ACnh+%C4%90%E1%BA%A1i,+T%E1%BB%95+d%C3%A2n+ph%E1%BB%91+s%E1%BB%91+3,+Hai+B%C3%A0+Tr%C6%B0ng,+H%C3%A0+N%E1%BB%99i,+Vietnam/@2.2267703,-29.1508278,3z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3135ac751c210f5b:0x4acb0f9aa5ea33de!2m2!1d105.850669!2d21.004802">
           <img
@@ -96,6 +96,29 @@ export default function Timelines() {
             height: "auto",
           }}
         />
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          left: 0,
+          textAlign: "center",
+        }}
+      >
+        <button
+          style={{
+            border: "none",
+            backgroundColor: "transparent",
+          }}
+          onClick={() => router.push("/invitation")}
+        >
+          <img
+            src="https://i.imgur.com/9cRyYbI.png"
+            alt="Image Button"
+            style={{ width: "170px", height: "40px" }}
+          />
+        </button>
       </div>
     </ThemeProvider>
   );

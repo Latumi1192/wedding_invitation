@@ -4,7 +4,7 @@ import React from "react";
 
 const SignInPage = () => {
   const bgStyle = {
-    backgroundImage: `url(https://i.ibb.co/R6sH8vd/DSC00868.jpg)`,
+    backgroundImage: `none`,
     height: "1000px",
     width: "100%",
     backgroundSize: "cover",
@@ -12,7 +12,7 @@ const SignInPage = () => {
   };
 
   return (
-    <div style={bgStyle}>
+    <div>
       <PhotoSlide />
     </div>
   );

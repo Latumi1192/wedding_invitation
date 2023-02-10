@@ -17,8 +17,10 @@ const Home = () => {
     },
     palette: {
       primary: {
-        light: "#b2dfdb",
-        main: "#5F8575",
+        //light: "#b2dfdb",
+        light: "#abbdce",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
@@ -26,15 +28,25 @@ const Home = () => {
     <div style={bgStyle}>
       <ThemeProvider theme={theme}>
         <Box>
-          <Button
-            size="large"
-            variant="outlined"
-            onClick={() => {
-              router.push("/invitation");
+          <div
+            style={{
+              position: "fixed",
+              top: 10,
+              right: 0,
+              left: 0,
+              textAlign: "center",
             }}
           >
-            Tham dự
-          </Button>
+            <Button
+              size="large"
+              variant="outlined"
+              onClick={() => {
+                router.push("/invitation");
+              }}
+            >
+              See More
+            </Button>
+          </div>
         </Box>
       </ThemeProvider>
     </div>

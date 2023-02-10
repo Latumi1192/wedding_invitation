@@ -3,14 +3,14 @@ import React from "react";
 
 const ConfirmationPage = () => {
   const bgStyle = {
-    backgroundImage: `url(https://i.ibb.co/R6sH8vd/DSC00868.jpg)`,
-    height: "950px",
+    backgroundImage: `url(https://i.imgur.com/ajVerF9.jpg)`,
+    height: "100%",
     width: "100%",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
   return (
-    <div style={bgStyle}>
+    <div>
       <Confirmation />
     </div>
   );
