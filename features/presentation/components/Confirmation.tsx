@@ -31,19 +31,24 @@ export default function Confirmation() {
         m="auto"
         sx={{
           mt: 1,
-          width: 4 / 5,
+          width: 8 / 9,
           border: 3,
           backgroundColor: "primary.light",
           borderColor: "primary.main",
-          borderRadius: "16px",
+
           "& .MuiButton-root": { m: 1 },
           "& .MuiTypography-root": { m: 1 },
           "& .MuiBox-root": { mt: 10 },
         }}
       >
-        <img src="https://i.imgur.com/w55UKKU.jpg"></img>
+        <img className="fit" src="https://i.imgur.com/w55UKKU.jpg"></img>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          ml: 3,
+          "& .MuiButton-root": { mt: 1 },
+        }}
+      >
         <Button
           variant="contained"
           onClick={() => {
