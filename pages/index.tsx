@@ -4,7 +4,7 @@ import "@fontsource/itim";
 
 const Home = () => {
   const bgStyle = {
-    backgroundImage: `url(https://i.imgur.com/WdpV0KK.gif)`,
+    backgroundImage: `url(https://i.imgur.com/IgjejRC.gif)`,
     height: "930px",
     width: "100%",
     backgroundSize: "cover",
