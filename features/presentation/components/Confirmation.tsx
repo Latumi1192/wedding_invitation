@@ -45,7 +45,7 @@ export default function Confirmation() {
       <Box
         sx={{
           ml: 3,
-          "& .MuiButton-root": { mt: 1 },
+          "& .MuiButton-root": { mt: 1, ml: 1 },
         }}
       >
         <Button

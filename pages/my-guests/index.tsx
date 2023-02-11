@@ -1,6 +1,6 @@
 import { GuestData } from "@/features/domain/dto/GuestData";
 import { UserServiceImpl } from "@/features/domain/services/UserServiceImpl";
-import { Button, DividerClassKey, TextField } from "@mui/material";
+import { Button, DividerClassKey, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 const MyGuestsPage = () => {
@@ -20,10 +20,27 @@ const MyGuestsPage = () => {
     setGuests(guests);
   };
 
+  const filterGuests = async (name: string) => {
+    const guests = await userServ.getGuests();
+    const filteredGuests = guests.filter(
+      (guest) => guest.name.search(filterName) != -1
+    );
+    console.log(filteredGuests);
+    setGuests(filteredGuests);
+  };
+
   const [form, setForm] = React.useState({
     account: "",
     password: "",
   });
+
+  const [filtered, setFiltered] = React.useState(false);
+
+  const [filterName, setFilterName] = React.useState("");
+
+  const handleChange2 = (event: { target: { name: any; value: any } }) => {
+    setFilterName(event.target.value);
+  };
 
   const [warning, setWarning] = React.useState("");
   const handleChange = (event: { target: { name: any; value: any } }) => {
@@ -75,9 +92,28 @@ const MyGuestsPage = () => {
       )}
       {logIn && (
         <div style={{ backgroundColor: "white" }}>
-          <TextField /> <Button variant="contained">Filter</Button>
+          <div style={{ backgroundColor: "black" }}>
+            <Typography>{guests.length}</Typography>
+          </div>
+          <TextField
+            focused
+            id="outlined-password-input"
+            name="filterName"
+            value={filterName}
+            onChange={handleChange2}
+            placeholder="Name"
+          />
+          <Button
+            variant="contained"
+            onClick={() => {
+              filterGuests(filterName);
+            }}
+          >
+            Filter
+          </Button>
         </div>
       )}
+
       {logIn &&
         guests.map((guest) => (
           <div key={guest.uid}>
