@@ -35,7 +35,6 @@ export default function Confirmation() {
           border: 3,
           backgroundColor: "primary.light",
           borderColor: "primary.main",
-
           "& .MuiButton-root": { m: 1 },
           "& .MuiTypography-root": { m: 1 },
           "& .MuiBox-root": { mt: 10 },

@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import PageBar from "./PageBar";
 import router from "next/router";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 export default function AboutUs() {
   const [bride, setBride] = React.useState(true);
@@ -14,95 +14,74 @@ export default function AboutUs() {
         <PageBar />
       </div>
       <div>
-        <Box
-          sx={{
-            width: "100%",
-            minHeight: "1000px",
-
-            maxHeight: "2000px",
-            display: "inline-flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            alignItems: "flex-start",
-            alignContent: "flex-start",
-            "& .MuiBox-root": { m: 1 },
-          }}
-        >
-          {bride && (
+        <Grid container alignItems="center" justifyContent="center" spacing={0}>
+          <Grid item xs={12} sm={6} md={8} lg={4}>
             <Box
               sx={{
-                backgroundImage: `url(https://i.imgur.com/Ugou4fJ.jpg)`,
-                backgroundSize: "cover",
-                minHeight: "600px",
-                maxHeight: "1000px",
-                width: "45%",
-                borderRadius: "8px",
+                width: "100%",
+                minHeight: "1200px",
+                maxHeight: "1500px",
+                display: "inline-flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                alignItems: "flex-start",
+                alignContent: "flex-start",
+                "& .MuiBox-root": { m: 1 },
               }}
-              onClick={() => setBride(false)}
-            ></Box>
-          )}
-          {!bride && (
-            <Box
-              sx={{
-                backgroundImage: `url(https://i.imgur.com/qeuaMvd.jpg)`,
-                backgroundSize: "cover",
-                minHeight: "600px",
-                maxHeight: "1000px",
-                width: "45%",
-                borderRadius: "8px",
-              }}
-              onClick={() => setBride(true)}
-            ></Box>
-          )}
-          {groom && (
-            <Box
-              sx={{
-                backgroundImage: `url(https://i.imgur.com/ckY1vEm.jpg)`,
-                backgroundSize: "cover",
-                minHeight: "600px",
-                maxHeight: "1000px",
-                width: "45%",
-                borderRadius: "8px",
-              }}
-              onClick={() => setGroom(false)}
-            ></Box>
-          )}
-          {!groom && (
-            <Box
-              sx={{
-                backgroundImage: `url(https://i.imgur.com/isGdYLz.png)`,
-                backgroundSize: "cover",
-                minHeight: "600px",
-                maxHeight: "1000px",
-                width: "45%",
-                borderRadius: "8px",
-              }}
-              onClick={() => setGroom(true)}
-            ></Box>
-          )}
-        </Box>
+            >
+              {bride && (
+                <Box
+                  sx={{
+                    backgroundImage: `url(https://i.imgur.com/Ugou4fJ.jpg)`,
+                    backgroundSize: "cover",
+                    minHeight: "600px",
+                    width: "45%",
+                    borderRadius: "8px",
+                  }}
+                  onClick={() => setBride(false)}
+                ></Box>
+              )}
+              {!bride && (
+                <Box
+                  sx={{
+                    backgroundImage: `url(https://i.imgur.com/qeuaMvd.jpg)`,
+                    backgroundSize: "cover",
+                    minHeight: "600px",
+                    width: "45%",
+                    borderRadius: "8px",
+                  }}
+                  onClick={() => setBride(true)}
+                ></Box>
+              )}
+              {groom && (
+                <Box
+                  sx={{
+                    backgroundImage: `url(https://i.imgur.com/ckY1vEm.jpg)`,
+                    backgroundSize: "cover",
+                    minHeight: "600px",
+                    width: "45%",
+                    borderRadius: "8px",
+                  }}
+                  onClick={() => setGroom(false)}
+                ></Box>
+              )}
+              {!groom && (
+                <Box
+                  sx={{
+                    backgroundImage: `url(https://i.imgur.com/isGdYLz.png)`,
+                    backgroundSize: "cover",
+                    minHeight: "600px",
+                    width: "45%",
+                    borderRadius: "8px",
+                  }}
+                  onClick={() => setGroom(true)}
+                ></Box>
+              )}
+            </Box>
+          </Grid>
+        </Grid>
       </div>
-      <Box
-        m="auto"
-        sx={{
-          mt: 1,
-          width: 4 / 5,
-          border: 3,
-          backgroundColor: "primary.light",
-          borderColor: "primary.main",
-          borderRadius: "16px",
-          "& .MuiButton-root": { m: 1 },
-          "& .MuiTypography-root": { m: 1 },
-          "& .MuiBox-root": { mt: 10 },
-        }}
-      >
-        <Typography>Xin cám ơn PLACEHOLDER, </Typography>
-        <Typography>Bạn sẽ đến dự PLACEHOLDER2 với chúng tôi, </Typography>
-        <Typography>vào lúc PLACEHOLDER3, </Typography>
-        <Typography>tại PLACEHOLDER4, </Typography>
-        <Typography>cùng với PLAYCEHOLDER5 </Typography>
-        
-      </Box>
+
       <div
         style={{
           position: "fixed",
