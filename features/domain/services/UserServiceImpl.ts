@@ -18,7 +18,7 @@ export class UserServiceImpl implements UserService {
       case eventNumber === 1:
         return ["Lễ vu quy", "14:00, ngày 25/02/2023", "Nhà cô dâu"];
       case eventNumber === 2:
-        return ["Bữa cơm thân mật", "14:00, ngày 25/02/2023", "Nhà cô dâu"];
+        return ["Bữa cơm thân mật", "11:00, ngày 25/02/2023", "Nhà cô dâu"];
       case eventNumber === 3:
         return ["Tiệc cưới", "17:30, ngày 25/02/2023", "Nhà hàng Long Vĩ"];
       case eventNumber === 4:

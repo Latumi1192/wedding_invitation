@@ -196,13 +196,13 @@ export default function GuestForm() {
                 <MenuItem
                   onClick={() => {
                     setEvent(
-                      "Bữa trưa thân mật - Nhà cô dâu - 11:30 25/02/2023"
+                      "Bữa trưa thân mật - Nhà cô dâu - 11:00 25/02/2023"
                     );
                     setEventNumber(1);
                     handleClose();
                   }}
                 >
-                  Bữa cơm thân mật - Nhà cô dâu - 11:30 25/02/2023
+                  Bữa cơm thân mật - Nhà cô dâu - 11:00 25/02/2023
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
