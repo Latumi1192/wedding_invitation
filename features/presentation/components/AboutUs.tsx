@@ -53,7 +53,7 @@ export default function AboutUs() {
                 {bride && (
                   <Box
                     sx={{
-                      backgroundImage: `url(https://i.imgur.com/Ugou4fJ.jpg)`,
+                      backgroundImage: `url(https://i.imgur.com/nW9u3lI.jpg)`,
                       backgroundSize: "cover",
                       minHeight: "600px",
                       width: "45%",
@@ -77,7 +77,7 @@ export default function AboutUs() {
                 {groom && (
                   <Box
                     sx={{
-                      backgroundImage: `url(https://i.imgur.com/ckY1vEm.jpg)`,
+                      backgroundImage: `url(https://i.imgur.com/Eh2haDt.jpg)`,
                       backgroundSize: "cover",
                       minHeight: "600px",
                       width: "45%",

@@ -41,7 +41,7 @@ const Home = () => {
               size="large"
               variant="outlined"
               onClick={() => {
-                router.push("/invitation");
+                router.push("/aboutus");
               }}
             >
               See More
