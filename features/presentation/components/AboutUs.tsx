@@ -38,7 +38,7 @@ export default function AboutUs() {
             justifyContent="center"
             spacing={0}
           >
-            <Grid item xs={12} sm={6} md={8} lg={4}>
+            <Grid item xs={12} sm={6} md={5} lg={4}>
               <Box
                 sx={{
                   width: "100%",
@@ -100,7 +100,7 @@ export default function AboutUs() {
                 )}
               </Box>
             </Grid>
-            <Grid item xs={12} sm={6} md={8} lg={4}>
+            <Grid item xs={12} sm={6} md={5} lg={4}>
               <Box
                 sx={{
                   m: 1,
